@@ -28,7 +28,7 @@ func RegisterRoutes(cliCtx context.CLIContext, r *mux.Router, cdc *codec.Codec, 
 
 type buyAssetReq struct {
 	BaseReq rest.BaseReq `json:"base_req"`
-	Asset    string       `json:"asset"`
+	Name    string       `json:"name"`
 	Amount  string       `json:"amount"`
 	Buyer   string       `json:"buyer"`
 }
@@ -60,7 +60,7 @@ func buyAssetHandler(cdc *codec.Codec, cliCtx context.CLIContext) http.HandlerFu
 		}
 
 		// create the message
-		msg := assetservice.NewMsgBuyAsset(req.Asset, coins, addr)
+		msg := assetservice.NewMsgBuyAsset(req.Name, coins, addr)
 		err = msg.ValidateBasic()
 		if err != nil {
 			rest.WriteErrorResponse(w, http.StatusBadRequest, err.Error())
@@ -73,7 +73,7 @@ func buyAssetHandler(cdc *codec.Codec, cliCtx context.CLIContext) http.HandlerFu
 
 type setAssetReq struct {
 	BaseReq rest.BaseReq `json:"base_req"`
-	Asset    string       `json:"asset"`
+	Name    string       `json:"name"`
 	Value   string       `json:"value"`
 	Owner   string       `json:"owner"`
 }
@@ -98,7 +98,7 @@ func setAssetHandler(cdc *codec.Codec, cliCtx context.CLIContext) http.HandlerFu
 		}
 
 		// create the message
-		msg := assetservice.NewMsgSetAsset(req.Asset, req.Value, addr)
+		msg := assetservice.NewMsgSetAsset(req.Name, req.Value, addr)
 		err = msg.ValidateBasic()
 		if err != nil {
 			rest.WriteErrorResponse(w, http.StatusBadRequest, err.Error())

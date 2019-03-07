@@ -18,11 +18,11 @@ func GetCmdResolveAsset(queryRoute string, cdc *codec.Codec) *cobra.Command {
 		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			cliCtx := context.NewCLIContext().WithCodec(cdc)
-			asset := args[0]
+			name := args[0]
 
-			res, err := cliCtx.QueryWithData(fmt.Sprintf("custom/%s/resolve/%s", queryRoute, asset), nil)
+			res, err := cliCtx.QueryWithData(fmt.Sprintf("custom/%s/resolve/%s", queryRoute, name), nil)
 			if err != nil {
-				fmt.Printf("could not resolve asset - %s \n", string(asset))
+				fmt.Printf("could not resolve asset - %s \n", string(name))
 				return nil
 			}
 
@@ -47,11 +47,11 @@ func GetCmdWhois(queryRoute string, cdc *codec.Codec) *cobra.Command {
 		Args:  cobra.ExactArgs(1),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			cliCtx := context.NewCLIContext().WithCodec(cdc)
-			asset := args[0]
+			name := args[0]
 
-			res, err := cliCtx.QueryWithData(fmt.Sprintf("custom/%s/whois/%s", queryRoute, asset), nil)
+			res, err := cliCtx.QueryWithData(fmt.Sprintf("custom/%s/whois/%s", queryRoute, name), nil)
 			if err != nil {
-				fmt.Printf("could not resolve whois - %s \n", string(asset))
+				fmt.Printf("could not resolve whois - %s \n", string(name))
 				return nil
 			}
 

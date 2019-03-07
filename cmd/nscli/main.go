@@ -20,7 +20,7 @@ import (
 	auth "github.com/cosmos/cosmos-sdk/x/auth/client/rest"
 	bankcmd "github.com/cosmos/cosmos-sdk/x/bank/client/cli"
 	bank "github.com/cosmos/cosmos-sdk/x/bank/client/rest"
-	app "github.com/cosmos/sdk-application-tutorial"
+	app "https://github.com/netobjex/netobjexchain"
 	nsclient "github.com/cosmos/sdk-application-tutorial/x/assetservice/client"
 	nsrest "github.com/cosmos/sdk-application-tutorial/x/assetservice/client/rest"
 )

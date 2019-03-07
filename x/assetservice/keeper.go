@@ -50,25 +50,25 @@ func (k Keeper) HasOwner(ctx sdk.Context, name string) bool {
 }
 
 // GetOwner - get the current owner of a asset
-func (k Keeper) GetOwner(ctx sdk.Context, asset string) sdk.AccAddress {
+func (k Keeper) GetOwner(ctx sdk.Context, name string) sdk.AccAddress {
 	store := ctx.KVStore(k.ownersStoreKey)
-	bz := store.Get([]byte(asset))
+	bz := store.Get([]byte(name))
 	return bz
 }
 
 // SetOwner - sets the current owner of a asset
-func (k Keeper) SetOwner(ctx sdk.Context, asset string, owner sdk.AccAddress) {
+func (k Keeper) SetOwner(ctx sdk.Context, name string, owner sdk.AccAddress) {
 	store := ctx.KVStore(k.ownersStoreKey)
-	store.Set([]byte(asset), owner)
+	store.Set([]byte(name), owner)
 }
 
 // GetPrice - gets the current price of a asset.  If price doesn't exist yet, set to 1mycoin.
-func (k Keeper) GetPrice(ctx sdk.Context, asset string) sdk.Coins {
-	if !k.HasOwner(ctx, asset) {
+func (k Keeper) GetPrice(ctx sdk.Context, name string) sdk.Coins {
+	if !k.HasOwner(ctx, name) {
 		return sdk.Coins{sdk.NewInt64Coin("mycoin", 1)}
 	}
 	store := ctx.KVStore(k.pricesStoreKey)
-	bz := store.Get([]byte(asset))
+	bz := store.Get([]byte(name))
 	var price sdk.Coins
 	// k.cdc.MustUnmarshalBinary(bz, &price)
 	k.cdc.MustUnmarshalBinaryBare(bz, &price)
@@ -76,7 +76,7 @@ func (k Keeper) GetPrice(ctx sdk.Context, asset string) sdk.Coins {
 }
 
 // SetPrice - sets the current price of a asset
-func (k Keeper) SetPrice(ctx sdk.Context, asset string, price sdk.Coins) {
+func (k Keeper) SetPrice(ctx sdk.Context, name string, price sdk.Coins) {
 	store := ctx.KVStore(k.pricesStoreKey)
-	store.Set([]byte(asset), k.cdc.MustMarshalBinaryBare(price))
+	store.Set([]byte(name), k.cdc.MustMarshalBinaryBare(price))
 }

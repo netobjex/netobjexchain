@@ -10,7 +10,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/bank"
 	"github.com/cosmos/cosmos-sdk/x/params"
 	"github.com/cosmos/cosmos-sdk/x/staking"
-	"github.com/cosmos/sdk-application-tutorial/x/nameservice"
+	"./x/assetservice"
 
 	bam "github.com/cosmos/cosmos-sdk/baseapp"
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -30,7 +30,7 @@ type assetServiceApp struct {
 
 	keyMain          *sdk.KVStoreKey
 	keyAccount       *sdk.KVStoreKey
-	keyNSnames       *sdk.KVStoreKey
+	keyNSassets       *sdk.KVStoreKey
 	keyNSowners      *sdk.KVStoreKey
 	keyNSprices      *sdk.KVStoreKey
 	keyFeeCollection *sdk.KVStoreKey
@@ -44,7 +44,7 @@ type assetServiceApp struct {
 	nsKeeper            assetservice.Keeper
 }
 
-// NewNameServiceApp is a constructor function for assetServiceApp
+// NewassetserviceApp is a constructor function for assetServiceApp
 func NewAssetServiceApp(logger log.Logger, db dbm.DB) *assetServiceApp {
 
 	// First define the top level codec that will be shared by the different modules
@@ -60,7 +60,7 @@ func NewAssetServiceApp(logger log.Logger, db dbm.DB) *assetServiceApp {
 
 		keyMain:          sdk.NewKVStoreKey("main"),
 		keyAccount:       sdk.NewKVStoreKey("acc"),
-		keyNSnames:       sdk.NewKVStoreKey("ns_names"),
+		keyNSassets:       sdk.NewKVStoreKey("ns_assets"),
 		keyNSowners:      sdk.NewKVStoreKey("ns_owners"),
 		keyNSprices:      sdk.NewKVStoreKey("ns_prices"),
 		keyFeeCollection: sdk.NewKVStoreKey("fee_collection"),
@@ -89,11 +89,11 @@ func NewAssetServiceApp(logger log.Logger, db dbm.DB) *assetServiceApp {
 	// The FeeCollectionKeeper collects transaction fees and renders them to the fee distribution module
 	app.feeCollectionKeeper = auth.NewFeeCollectionKeeper(cdc, app.keyFeeCollection)
 
-	// The NameserviceKeeper is the Keeper from the module for this tutorial
-	// It handles interactions with the namestore
+	// The assetserviceKeeper is the Keeper from the module for this tutorial
+	// It handles interactions with the assetstore
 	app.nsKeeper = assetservice.NewKeeper(
 		app.bankKeeper,
-		app.keyNSnames,
+		app.keyNSassets,
 		app.keyNSowners,
 		app.keyNSprices,
 		app.cdc,
@@ -118,7 +118,7 @@ func NewAssetServiceApp(logger log.Logger, db dbm.DB) *assetServiceApp {
 	app.MountStores(
 		app.keyMain,
 		app.keyAccount,
-		app.keyNSnames,
+		app.keyNSassets,
 		app.keyNSowners,
 		app.keyNSprices,
 		app.keyFeeCollection,

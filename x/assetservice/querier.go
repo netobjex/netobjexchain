@@ -29,9 +29,9 @@ func NewQuerier(keeper Keeper) sdk.Querier {
 
 // nolint: unparam
 func queryResolve(ctx sdk.Context, path []string, req abci.RequestQuery, keeper Keeper) (res []byte, err sdk.Error) {
-	asset := path[0]
+	name := path[0]
 
-	value := keeper.ResolveAsset(ctx, asset)
+	value := keeper.ResolveAsset(ctx, name)
 
 	if value == "" {
 		return []byte{}, sdk.ErrUnknownRequest("could not resolve asset")
@@ -49,13 +49,13 @@ type Whois struct {
 
 // nolint: unparam
 func queryWhois(ctx sdk.Context, path []string, req abci.RequestQuery, keeper Keeper) (res []byte, err sdk.Error) {
-	asset := path[0]
+	name := path[0]
 
 	whois := Whois{}
 
-	whois.Value = keeper.ResolveAsset(ctx, asset)
-	whois.Owner = keeper.GetOwner(ctx, asset)
-	whois.Price = keeper.GetPrice(ctx, asset)
+	whois.Value = keeper.ResolveAsset(ctx, name)
+	whois.Owner = keeper.GetOwner(ctx, name)
+	whois.Price = keeper.GetPrice(ctx, name)
 
 	bz, err2 := codec.MarshalJSONIndent(keeper.cdc, whois)
 	if err2 != nil {

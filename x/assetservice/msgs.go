@@ -14,9 +14,9 @@ type MsgSetAsset struct {
 }
 
 // NewMsgSetAsset is a constructor function for MsgSetAsset
-func NewMsgSetAsset(asset string, value string, owner sdk.AccAddress) MsgSetAsset {
+func NewMsgSetAsset(name string, value string, owner sdk.AccAddress) MsgSetAsset {
 	return MsgSetAsset{
-		Asset:  asset,
+		Asset:  name,
 		Value: value,
 		Owner: owner,
 	}
@@ -61,9 +61,9 @@ type MsgBuyAsset struct {
 }
 
 // NewMsgBuyAsset is the constructor function for MsgBuyAsset
-func NewMsgBuyAsset(asset string, bid sdk.Coins, buyer sdk.AccAddress) MsgBuyAsset {
+func NewMsgBuyAsset(name string, bid sdk.Coins, buyer sdk.AccAddress) MsgBuyAsset {
 	return MsgBuyAsset{
-		Asset:  asset,
+		Asset:  name,
 		Bid:   bid,
 		Buyer: buyer,
 	}
