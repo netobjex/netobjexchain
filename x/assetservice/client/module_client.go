@@ -2,7 +2,7 @@ package client
 
 import (
 	"github.com/cosmos/cosmos-sdk/client"
-	assetservicecmd "github.com/cosmos/sdk-application-tutorial/x/assetservice/client/cli"
+	assetservicecmd "github.com/netobjex/netobjexchain/x/assetservice/client/cli"
 	"github.com/spf13/cobra"
 	amino "github.com/tendermint/go-amino"
 )
