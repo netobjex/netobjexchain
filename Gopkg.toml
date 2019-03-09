@@ -28,6 +28,10 @@
   name = "github.com/cosmos/cosmos-sdk"
   version = "v0.32.0"
 
+[[constraint]]
+  name = "github.com/netobjex/netobjexchain"
+  branch = "master"
+
 [[override]]
   name = "github.com/golang/protobuf"
   version = "=1.1.0"

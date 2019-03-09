@@ -8,7 +8,7 @@ import (
 
 // MsgSetAsset defines a SetAsset message
 type MsgSetAsset struct {
-	Asset  string
+	Name  string
 	Value string
 	Owner sdk.AccAddress
 }
@@ -16,7 +16,7 @@ type MsgSetAsset struct {
 // NewMsgSetAsset is a constructor function for MsgSetAsset
 func NewMsgSetAsset(name string, value string, owner sdk.AccAddress) MsgSetAsset {
 	return MsgSetAsset{
-		Asset:  name,
+		Name:  name,
 		Value: value,
 		Owner: owner,
 	}
@@ -55,7 +55,7 @@ func (msg MsgSetAsset) GetSigners() []sdk.AccAddress {
 
 // MsgBuyAsset defines the BuyAsset message
 type MsgBuyAsset struct {
-	Asset  string
+	Name  string
 	Bid   sdk.Coins
 	Buyer sdk.AccAddress
 }
@@ -63,7 +63,7 @@ type MsgBuyAsset struct {
 // NewMsgBuyAsset is the constructor function for MsgBuyAsset
 func NewMsgBuyAsset(name string, bid sdk.Coins, buyer sdk.AccAddress) MsgBuyAsset {
 	return MsgBuyAsset{
-		Asset:  name,
+		Name:  name,
 		Bid:   bid,
 		Buyer: buyer,
 	}
