@@ -21,8 +21,8 @@ import (
 	bankcmd "github.com/cosmos/cosmos-sdk/x/bank/client/cli"
 	bank "github.com/cosmos/cosmos-sdk/x/bank/client/rest"
 	app "github.com/netobjex/netobjexchain"
-	nsclient "github.com/cosmos/sdk-application-tutorial/x/assetservice/client"
-	nsrest "github.com/cosmos/sdk-application-tutorial/x/assetservice/client/rest"
+	nsclient "github.com/netobjex/netobjexchain/x/assetservice/client"
+	nsrest "github.com/netobjex/netobjexchain/x/assetservice/client/rest"
 )
 
 const (

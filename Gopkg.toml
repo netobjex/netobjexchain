@@ -26,7 +26,7 @@
 
 [[constraint]]
   name = "github.com/cosmos/cosmos-sdk"
-  version = "v0.31.1"
+  version = "v0.32.0"
 
 [[override]]
   name = "github.com/golang/protobuf"
@@ -65,6 +65,3 @@
   name = "github.com/btcsuite/btcd"
   revision = "ed77733ec07dfc8a513741138419b8d9d3de9d2d"
 
-[prune]
-  go-tests = true
-  unused-packages = true
